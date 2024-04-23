@@ -1,70 +1,52 @@
-# Login API with Spring-Boot
+# Cahier des Charges - GeoPoint
 
-## Requirements
+## 1. Introduction
 
-- Java 21
-- PostgreSQL Server
+### Objectif du document
+Ce document vise à définir les spécifications fonctionnelles et techniques pour le développement d'une application web destinée à la gestion et à la visualisation de points géographiques avec adresses postales sur une carte interactive.
 
+### Portée du projet
+Développement d'une solution web permettant aux utilisateurs de gérer des points d'intérêt, avec fonctionnalités de visualisation et de recherche par proximité.
 
-## Setup
+## 2. Description du projet
 
-#### Configutration
+### Contexte
+Destinée à des utilisateurs variés, cette application facilitera la gestion et la visualisation de données géographiques.
 
-Edit application.properties with your database credentials and jwt secret
+### Objectifs
+- Gérer des points d'intérêt sur une carte interactive.
+- Recherche de points dans un rayon spécifique.
+- Interface utilisateur intuitive pour la gestion des points.
 
-```properties
-spring.datasource.url=jdbc:postgresql://localhost:5432/<YOUR_DB_NAME>
-spring.datasource.username=<YOUR_DB_USER>
-spring.datasource.password=<YOUR_DB_PASSWORD>
-spring.datasource.driver-class-name=org.postgresql.Driver
-# hibernate properties
-spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
-# Hibernate ddl auto (create, create-drop, validate, update)
-spring.jpa.hibernate.ddl-auto=update
-app.jwt-secret=<JWT_SECRET>
-app-jwt-expiration-milliseconds=604800000
-```
+## 3. Spécifications des utilisateurs
 
-#### Change default port
+- **Utilisateurs finaux** : Toute personne nécessitant une gestion facile des points d'intérêt géographiques.
+- **Administrateurs** : Gérer les utilisateurs et les données.
 
-Add this line to application.properties
+## 4. Exigences fonctionnelles
 
-```properties
-server.port=<PORT>
-```
+1. **Interface Utilisateur**
+   - Carte interactive pour la visualisation des points.
+   - Formulaire pour l'ajout et la modification des points.
+   - Options de recherche par rayon.
 
-### API Usage
+2. **Gestion des données**
+   - CRUD complet pour les points géographiques.
+   - Sécurité des données utilisateurs et points.
 
-#### Register
+## 5. Spécifications techniques
 
-```http
-POST /api/v1/auth/register
-```
+- **Backend** : Java avec Spring Boot.
+- **Frontend** : React avec Next.js.
+- **Base de données** : PostgreSQL avec PostGIS.
+- **API** : RESTful API pour les interactions front/back-end.
 
-| Parameter  | Type     | Description                 |
-|:-----------|:---------|:----------------------------|
-| `name`     | `string` | **Required**. Your name     |
-| `username` | `string` | **Required**. Your username |
-| `email`    | `string` | **Required**. Your email    |
-| `password` | `string` | **Required**. Your password |
+## 6. Sécurité
 
-#### Login
+- **Authentification** : JWT pour sécuriser l'accès à l'API.
+- **Autorisations** : Niveaux de contrôle pour divers rôles utilisateur.
 
-```http
-POST /api/v1/auth/login
-```
+## 7. Déploiement et maintenance
 
-| Parameter         | Type     | Description                          |
-|:------------------|:---------|:-------------------------------------|
-| `usernameOrEmail` | `string` | **Required**. Your username or email |
-| `password`        | `string` | **Required**. Your password          |
-
-## Footer
-
-### Author
-
-[@dodolereporter](https://github.com/dodolereporter)
-
-### License
-
-[MIT](https://choosealicense.com/licenses/mit/)
+- **Environnement de déploiement** : Cloud (AWS, Azure, etc.).
+- **Maintenance** : Mises à jour régulières et monitoring.
